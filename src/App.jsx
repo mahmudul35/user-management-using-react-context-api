@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Users from "./components/Users/Users";
+import UsersContext from "./components/context/UserContext";
 
 const USERS = [
   { id: 1, name: "Alice Johnson", age: 25, email: "alice.johnson@example.com" },
@@ -49,9 +50,11 @@ function App() {
   };
 
   return (
-    <div>
-      <Users users={users} handleDelete={handleDelete} />
-    </div>
+    <UsersContext.Provider value={{ users, setUsers }}>
+      <div>
+        <Users handleDelete={handleDelete} />
+      </div>
+    </UsersContext.Provider>
   );
 }
 
